@@ -1,4 +1,5 @@
 ⚽ Football Tactical AI App
+
 This project is a simple full-stack AI application designed to help football coaches analyze opponents and generate tactical insights.
 
 https://football-ai-app-eta.vercel.app/
