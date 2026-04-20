@@ -44,7 +44,7 @@
 
             const input = document.getElementById("inputText").value;
 
-            const response = await fetch("http://127.0.0.1:8000/analyze", {
+            const response = await fetch("https://football-ai-app.onrender.com/analyze", {
                  method: "POST",
                  headers: {
                 "Content-Type": "application/x-www-form-urlencoded"
@@ -62,7 +62,7 @@
 
 
      async function loadHistory() {
-        const response = await fetch("http://127.0.0.1:8000/history");
+        const response = await fetch("https://football-ai-app.onrender.com/history");
         const data = await response.json();
 
         let text = "";
