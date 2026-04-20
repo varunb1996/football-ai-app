@@ -20,6 +20,7 @@ Vanilla JavaScript
 SQLite (local history storage)
 
 🔄 How It Works
+
 User inputs opponent details
 Request sent to FastAPI backend
 Backend calls OpenRouter LLM
