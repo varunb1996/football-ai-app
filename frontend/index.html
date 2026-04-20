@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Football AI Coach</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
+
+<div class="w-full max-w-2xl p-6 bg-gray-800 rounded-2xl shadow-lg">
+
+    <h1 class="text-2xl font-bold mb-4">⚽ Football Tactical AI</h1>
+
+    <textarea id="inputText"
+        class="w-full p-3 rounded bg-gray-700 text-white mb-4"
+        rows="4"
+        placeholder="Describe opponent tactics..."></textarea>
+
+    <div class="flex gap-3 mb-4">
+        <button onclick="analyze()"
+            class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded">
+            Analyze
+        </button>
+
+        <button onclick="loadHistory()"
+            class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded">
+            History
+        </button>
+    </div>
+
+    <div id="output"
+        class="bg-gray-700 p-4 rounded h-64 overflow-y-auto whitespace-pre-wrap">
+        Output will appear here...
+    </div>
+
+</div>
+
+</body>
+
+    <script>
+     async function analyze() {
+        try {
+            const outputBox = document.getElementById("output");
+            outputBox.innerText = "Analyzing...";
+
+            const input = document.getElementById("inputText").value;
+
+            const response = await fetch("http://127.0.0.1:8000/analyze", {
+                 method: "POST",
+                 headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+                 },
+            body: "input_text=" + encodeURIComponent(input)
+            });
+
+            const data = await response.json();
+
+            outputBox.innerText = data.tactics;
+        } catch (error) {
+            console.error(error);
+        }
+}
+
+
+     async function loadHistory() {
+        const response = await fetch("http://127.0.0.1:8000/history");
+        const data = await response.json();
+
+        let text = "";
+        data.history.forEach(item => {
+            text += "INPUT: " + item[1] + "\n";
+            text += "OUTPUT: " + item[2] + "\n\n";
+        });
+
+    document.getElementById("output").innerText = text;
+}
+</script>
+
+</html>
