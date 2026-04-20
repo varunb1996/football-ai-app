@@ -28,7 +28,8 @@ Model generates tactical insights
 Response displayed in UI
 
 🌍 Deployment
-Backend → Render
+
+Backend → Render,
 Frontend → Vercel
 
 🧠 Note
